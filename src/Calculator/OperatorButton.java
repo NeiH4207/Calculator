@@ -2,8 +2,9 @@ package Calculator;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
 public class OperatorButton {
-	JButton[] operatorButtons = new JButton[25];
+
 	JButton addButton, subButton, mulButton, divButton;
 	JButton dotButton, equButton, delButton, clrButton;
 	JButton sqrtButton, negButton;
@@ -11,17 +12,33 @@ public class OperatorButton {
 	JButton sqrButton, absButton, powButton, facButton;
 	JButton eButton, piButton;
 	JButton lnButton, logButton, pow10Button, roundButton, modButton;
+
+	JButton[] operatorButtons = {
+		addButton, subButton, mulButton, divButton,
+		dotButton, equButton, delButton, clrButton,
+		sqrtButton, negButton, sinButton, cosButton, 
+		tanButton, cotButton, sqrButton, absButton, 
+		powButton, facButton, eButton, piButton, lnButton, 
+		logButton, pow10Button, roundButton, modButton
+	};
 	
 	int X, Y;
 	int WIDTH, HEIGHT;
 	Font NumberFont;
 	Color BG_COLOR = new Color(0,0,0);
 	Font numberFont = new Font("NewellsHand",Font.PLAIN, 50) ;
+
+	OperatorButton(){
+		super();
+		createOperatorButton();
+
+	}
+
 	public void createOperatorButton() {
 		addButton = new JButton("+");
 		subButton = new JButton("-");
 		mulButton = new JButton("*");
-		divButton= new JButton(new ImageIcon("/images/div.png"));
+		divButton = new JButton(new ImageIcon("/images/div.png"));
 		dotButton = new JButton(".");
 		equButton = new JButton("=");
 		sinButton = new JButton(new ImageIcon("/images/sin.png"));
@@ -42,38 +59,9 @@ public class OperatorButton {
 		logButton = new JButton("log");
 		pow10Button = new JButton("x^10");
 		roundButton = new JButton("x");
-		modButton = new JButton("mod"); 
-		
-		
-		operatorButtons[0] = addButton;
-		operatorButtons[1] = subButton;
-		operatorButtons[2] = mulButton;
-		operatorButtons[3] = divButton;
-		operatorButtons[4] = dotButton;
-		operatorButtons[5] = equButton;
-		operatorButtons[6] = sinButton;
-		operatorButtons[7] = cosButton;
-		operatorButtons[8] = tanButton;
-		operatorButtons[9] = cotButton;
-		operatorButtons[10] = absButton;
-		operatorButtons[11] = facButton;
-		operatorButtons[12] = eButton;
-		operatorButtons[13] = piButton;
-		operatorButtons[14] = powButton;
-		operatorButtons[15] = sqrtButton;
-		operatorButtons[16] = sqrButton;
-		operatorButtons[17] = delButton;
-		operatorButtons[18] = clrButton;
-		operatorButtons[19] = negButton;
-		operatorButtons[20] = lnButton;
-		operatorButtons[21] = logButton;
-		operatorButtons[22] = pow10Button;
-		operatorButtons[23] = roundButton;
-		operatorButtons[24] = modButton;
-		
-		
-		
+		modButton = new JButton("mod"); 	
 	}
+
 	public void setNumberButton(int x, int y, int width, int height) {
 		X = x;
 		Y = y;

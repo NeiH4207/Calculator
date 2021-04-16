@@ -49,143 +49,143 @@ public class ScienceCalculator extends Calculator implements  ActionListener {
 		JTextArea historyArea = new JTextArea("History");
 		historyArea.setBounds(1460,10,450,980);
 		frame.add(historyArea);
-	addButton = new JButton("+");
-	subButton = new JButton("-");
-	mulButton = new JButton("*");
-	divButton= new JButton(new ImageIcon("/images/div.png"));
-	dotButton = new JButton(".");
-	equButton = new JButton("=");
-	sinButton = new JButton(new ImageIcon("/images/sin.png"));
-	cosButton = new JButton(new ImageIcon("/images/cos.png"));
-	tanButton = new JButton(new ImageIcon("/images/tan.png"));
-	powButton = new JButton(new ImageIcon("/images/pow.png"));
-	cotButton = new JButton(new ImageIcon("/images/cot.png"));
-	eButton = new JButton("e");
-	piButton = new JButton(new ImageIcon("/images/So_pi.png"));
-	sqrButton = new JButton(new ImageIcon("/images/sqr.png"));
-	sqrtButton = new JButton(new ImageIcon("/images/sqrt.png"));
-	absButton = new JButton(new ImageIcon("/images/abs.png"));
-	facButton = new JButton("n!");
-	delButton = new JButton(new ImageIcon("/images/delete.png"));
-	clrButton = new JButton(new ImageIcon("/images/abs.png"));
-	negButton = new JButton("+/_");
-	lnButton = new JButton("ln");
-	logButton = new JButton("log");
-	pow10Button = new JButton("x^10");
-	roundButton = new JButton("x");
-	modButton = new JButton("mod");
-	
-	
-	operatorButtons[0] = addButton;
-	operatorButtons[1] = subButton;
-	operatorButtons[2] = mulButton;
-	operatorButtons[3] = divButton;
-	operatorButtons[4] = dotButton;
-	operatorButtons[5] = equButton;
-	operatorButtons[6] = sinButton;
-	operatorButtons[7] = cosButton;
-	operatorButtons[8] = tanButton;
-	operatorButtons[9] = cotButton;
-	operatorButtons[10] = absButton;
-	operatorButtons[11] = facButton;
-	operatorButtons[12] = eButton;
-	operatorButtons[13] = piButton;
-	operatorButtons[14] = powButton;
-	operatorButtons[15] = sqrtButton;
-	operatorButtons[16] = sqrButton;
-	operatorButtons[17] = delButton;
-	operatorButtons[18] = clrButton;
-	operatorButtons[19] = negButton;
-	operatorButtons[20] = lnButton;
-	operatorButtons[21] = logButton;
-	operatorButtons[22] = pow10Button;
-	operatorButtons[23] = roundButton;
-	operatorButtons[24] = modButton;
-	
-	
+		addButton = new JButton("+");
+		subButton = new JButton("-");
+		mulButton = new JButton("*");
+		divButton= new JButton(new ImageIcon("/images/div.png"));
+		dotButton = new JButton(".");
+		equButton = new JButton("=");
+		sinButton = new JButton(new ImageIcon("/images/sin.png"));
+		cosButton = new JButton(new ImageIcon("/images/cos.png"));
+		tanButton = new JButton(new ImageIcon("/images/tan.png"));
+		powButton = new JButton(new ImageIcon("/images/pow.png"));
+		cotButton = new JButton(new ImageIcon("/images/cot.png"));
+		eButton = new JButton("e");
+		piButton = new JButton(new ImageIcon("/images/So_pi.png"));
+		sqrButton = new JButton(new ImageIcon("/images/sqr.png"));
+		sqrtButton = new JButton(new ImageIcon("/images/sqrt.png"));
+		absButton = new JButton(new ImageIcon("/images/abs.png"));
+		facButton = new JButton("n!");
+		delButton = new JButton(new ImageIcon("/images/delete.png"));
+		clrButton = new JButton(new ImageIcon("/images/abs.png"));
+		negButton = new JButton("+/_");
+		lnButton = new JButton("ln");
+		logButton = new JButton("log");
+		pow10Button = new JButton("x^10");
+		roundButton = new JButton("x");
+		modButton = new JButton("mod");
+		
+		
+		operatorButtons[0] = addButton;
+		operatorButtons[1] = subButton;
+		operatorButtons[2] = mulButton;
+		operatorButtons[3] = divButton;
+		operatorButtons[4] = dotButton;
+		operatorButtons[5] = equButton;
+		operatorButtons[6] = sinButton;
+		operatorButtons[7] = cosButton;
+		operatorButtons[8] = tanButton;
+		operatorButtons[9] = cotButton;
+		operatorButtons[10] = absButton;
+		operatorButtons[11] = facButton;
+		operatorButtons[12] = eButton;
+		operatorButtons[13] = piButton;
+		operatorButtons[14] = powButton;
+		operatorButtons[15] = sqrtButton;
+		operatorButtons[16] = sqrButton;
+		operatorButtons[17] = delButton;
+		operatorButtons[18] = clrButton;
+		operatorButtons[19] = negButton;
+		operatorButtons[20] = lnButton;
+		operatorButtons[21] = logButton;
+		operatorButtons[22] = pow10Button;
+		operatorButtons[23] = roundButton;
+		operatorButtons[24] = modButton;
+		
+		
 
-	
-	
-	for(int i = 0; i < 5; i++) {
-		operatorButtons[i].addActionListener(this);
-		operatorButtons[i].setFont(new Font("NewellsHand", Font.PLAIN, 60));
-		operatorButtons[i].setFocusable(false);
-		operatorButtons[i].setBackground(Color.WHITE);
-	}
-	
-	
-	for(int i = 5; i < 25; i++) {
-		operatorButtons[i].addActionListener(this);
-		operatorButtons[i].setFont(new Font("NewellsHand", Font.PLAIN, 50));
-		operatorButtons[i].setFocusable(false);
-		operatorButtons[i].setBackground(Color.WHITE);
-	}
-	
-	for(int i = 0; i < 10; i++) {
-		numberButtons[i] = new JButton(String.valueOf(i));
-		numberButtons[i].addActionListener(this);
-		numberButtons[i].setFont(new Font("NewellsHand",Font.PLAIN, 60));
-		numberButtons[i].setFocusable(false);
-		numberButtons[i].setBackground(Color.WHITE);
-	}
-	//tạo 1 cái panel để add các số và các operator và panel đó
-	
-	panel = new JPanel();
-	//panel.setBackground(Color.PINK);
-	//setBound(trụcOx, trục Oy, rộng, dài)
-	panel.setBounds(10,400,1440,600);
-	panel.setLayout(new GridLayout(7,5,1,1));
-	
-	frame.add(panel);
+		
+		
+		for(int i = 0; i < 5; i++) {
+			operatorButtons[i].addActionListener(this);
+			operatorButtons[i].setFont(new Font("NewellsHand", Font.PLAIN, 60));
+			operatorButtons[i].setFocusable(false);
+			operatorButtons[i].setBackground(Color.WHITE);
+		}
+		
+		
+		for(int i = 5; i < 25; i++) {
+			operatorButtons[i].addActionListener(this);
+			operatorButtons[i].setFont(new Font("NewellsHand", Font.PLAIN, 50));
+			operatorButtons[i].setFocusable(false);
+			operatorButtons[i].setBackground(Color.WHITE);
+		}
+		
+		for(int i = 0; i < 10; i++) {
+			numberButtons[i] = new JButton(String.valueOf(i));
+			numberButtons[i].addActionListener(this);
+			numberButtons[i].setFont(new Font("NewellsHand",Font.PLAIN, 60));
+			numberButtons[i].setFocusable(false);
+			numberButtons[i].setBackground(Color.WHITE);
+		}
+		//tạo 1 cái panel để add các số và các operator và panel đó
+		
+		panel = new JPanel();
+		//panel.setBackground(Color.PINK);
+		//setBound(trụcOx, trục Oy, rộng, dài)
+		panel.setBounds(10,400,1440,600);
+		panel.setLayout(new GridLayout(7,5,1,1));
+		
+		frame.add(panel);
 
-	panel.add(lnButton);
-	panel.add(logButton);
-	panel.add(pow10Button);
-	panel.add(delButton);
-	panel.add(clrButton);
-	
-	panel.add(facButton);
-	panel.add(piButton);
-	panel.add(eButton);
-	panel.add(roundButton);
-	panel.add(modButton);
-	
-	panel.add(sinButton);
-	panel.add(cosButton);
-	panel.add(tanButton);
-	panel.add(cotButton);
-	panel.add(divButton);
-	
-	panel.add(powButton);
-	panel.add(numberButtons[7]);
-	panel.add(numberButtons[8]);
-	panel.add(numberButtons[9]);
-	panel.add(mulButton);
-	
-	panel.add(sqrButton);
-	panel.add(numberButtons[4]);
-	panel.add(numberButtons[5]);
-	panel.add(numberButtons[6]) ;
-	panel.add(subButton);
-	
-	panel.add(sqrtButton);
-	panel.add(numberButtons[1]);
-	panel.add(numberButtons[2]);
-	panel.add(numberButtons[3]);
-	panel.add(addButton);
-	
-	panel.add(absButton);
-	panel.add(negButton);
-	panel.add(numberButtons[0]);
-	panel.add(dotButton);
-	panel.add(equButton);
-	
-	
-	
-	
-	
-	frame.add(panel);
-	frame.setVisible(true);
+		panel.add(lnButton);
+		panel.add(logButton);
+		panel.add(pow10Button);
+		panel.add(delButton);
+		panel.add(clrButton);
+		
+		panel.add(facButton);
+		panel.add(piButton);
+		panel.add(eButton);
+		panel.add(roundButton);
+		panel.add(modButton);
+		
+		panel.add(sinButton);
+		panel.add(cosButton);
+		panel.add(tanButton);
+		panel.add(cotButton);
+		panel.add(divButton);
+		
+		panel.add(powButton);
+		panel.add(numberButtons[7]);
+		panel.add(numberButtons[8]);
+		panel.add(numberButtons[9]);
+		panel.add(mulButton);
+		
+		panel.add(sqrButton);
+		panel.add(numberButtons[4]);
+		panel.add(numberButtons[5]);
+		panel.add(numberButtons[6]) ;
+		panel.add(subButton);
+		
+		panel.add(sqrtButton);
+		panel.add(numberButtons[1]);
+		panel.add(numberButtons[2]);
+		panel.add(numberButtons[3]);
+		panel.add(addButton);
+		
+		panel.add(absButton);
+		panel.add(negButton);
+		panel.add(numberButtons[0]);
+		panel.add(dotButton);
+		panel.add(equButton);
+		
+		
+		
+		
+		
+		frame.add(panel);
+		frame.setVisible(true);
 }
 public void actionPerformed(ActionEvent e) {
 	
@@ -372,5 +372,5 @@ public void actionPerformed(ActionEvent e) {
 
 	public static void main(String [] args) {
 		ScienceCalculator sicenCal = new ScienceCalculator ();
-}
+	}
 }
