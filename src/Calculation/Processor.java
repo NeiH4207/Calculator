@@ -1,10 +1,10 @@
-package Calculator;
+package Calculation;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Processor {
-  public enum Standard {
+public class Processor extends SymbolTable {
+  	public enum Standard {
 		add, sub, mul, div, sqrt, neg 
 	}
 	public enum Science {
@@ -13,6 +13,11 @@ public class Processor {
 	double num1, num2 , result;
 	public Standard Operator = Standard.add;
 	public Science  newOperator = Science.sin;
+
+	public void Implement(ActionEvent event){
+	}
+
+
 	public double calcStandard() {
 		if(Operator == Standard.add) {
 			result = num1 + num2;
@@ -70,8 +75,6 @@ public class Processor {
 			result = Math.pow(10, num1);
 		}
 		return result;
-		
-		
 	}
 	public double factorial(int number) {
 		double result = 1;
