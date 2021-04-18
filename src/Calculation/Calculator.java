@@ -8,6 +8,7 @@ public class Calculator{
 	ShowResultField ResultArea = new ShowResultField();
 	HistoryField HistoryArea = new HistoryField();
 	SymbolTable SymTable = new SymbolTable();
+	StandardSymbolTable SymTable2 = new StandardSymbolTable();
 	Processor Processor = new Processor(CalPanel, SymTable, ResultArea, HistoryArea);
 
 	public Calculator() {}
@@ -23,6 +24,9 @@ public class Calculator{
     }
 	public SymbolTable getSymbolTable() {
         return SymTable;
+    }
+	public StandardSymbolTable getStandardSymbolTable() {
+        return SymTable2;
     }
 	public Processor getProcessor() {
         return Processor;

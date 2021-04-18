@@ -51,7 +51,7 @@ public class CalculatingPanel {
 		}
 	}
 
-	public double getGolbalValue(){
+	public double getGlobalValue(){
 		double result = this.Values[0];
 		for (int i = 0; i < nValues; i++){
 			if (sign[i] == '+'){
