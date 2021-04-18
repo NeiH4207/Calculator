@@ -18,7 +18,7 @@ public class StandardCalculator extends Calculator implements ActionListener {
 		frame.setLayout(null);
 		
 		CalPanel.Panel.setBounds(5,15,400,140);
-		CalPanel.Panel.setFont(new Font("NewellsHand", Font.PLAIN, 50));
+		CalPanel.Panel.setFont(new Font("NewellsHand", Font.PLAIN, 30));
 		frame.add(CalPanel.Panel);
 		
 		
@@ -74,6 +74,18 @@ public class StandardCalculator extends Calculator implements ActionListener {
 			CalPanel.setText("= " + String.valueOf(CalPanel.getGlobalValue()));
 			CalPanel.resetValue();
 			CalPanel.EndExpression = true;
+		}
+
+		if(e.getSource() == SymTable2.operButton.sqrt) {
+			double result = Math.sqrt(CalPanel.getGlobalValue());
+			CalPanel.setText(" = " + String.valueOf(result));
+			CalPanel.resetValue();
+			CalPanel.EndExpression = true;
+		}
+		
+		if(e.getSource() == SymTable2.operButton.del) {
+			CalPanel.setText(CalPanel.getText().substring(0, CalPanel.getText().length() - 1));
+			CalPanel.setValue((int) CalPanel.getValue() / 10);
 		}
 		
 		if(e.getSource() == SymTable2.operButton.clr) {

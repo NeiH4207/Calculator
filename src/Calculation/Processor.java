@@ -112,6 +112,11 @@ public class Processor{
 				CalPanel.setValue(result);
 			}
 		}
+		if(e.getSource() == SymTable.operButton.del) {
+			CalPanel.setText(CalPanel.getText().substring(0, CalPanel.getText().length() - 1));
+			CalPanel.setValue((int) CalPanel.getValue() / 10);
+		}
+		
 
 		if(e.getSource() == SymTable.operButton.pow10) {
 			CalPanel.setValue(Math.pow(10, CalPanel.getValue()));
