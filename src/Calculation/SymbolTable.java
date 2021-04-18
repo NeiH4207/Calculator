@@ -73,11 +73,11 @@ class OperatorButton {
 		div.setIcon(new ImageIcon(path + "/images/div.png"));
 		dot.setText(".");
 		mod.setText("mod");
-		sin.setIcon(new ImageIcon(path + "/images/sin.png"));
-		cos.setIcon(new ImageIcon(path + "/images/cos.png"));
-		tan.setIcon(new ImageIcon(path + "/images/tan.png"));
+		sin.setText("sin");
+		cos.setText("cos");
+		tan.setText("tan");
 		pow.setIcon(new ImageIcon(path + "/images/pow.png"));
-		cot.setIcon(new ImageIcon(path + "/images/cot.png"));
+		cot.setText("cot");
 		e.setText("e");
 		pi.setText("\u03C0");
 		sqr.setIcon(new ImageIcon(path + "/images/sqr.png"));
@@ -108,7 +108,7 @@ class OperatorButton {
 }
 
 
-public class SymbolTable
+public class SymbolTable{
 	NumberButton numButton = new NumberButton();
 	OperatorButton operButton = new OperatorButton();
 	JPanel Panel = new JPanel();

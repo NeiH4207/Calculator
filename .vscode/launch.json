@@ -6,46 +6,15 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch Java Program",
-            "request": "launch",
-            "mainClass": "Calculation.ScienceCalculator"
-        },
-        
-    
-        
-        {
-            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
         },
         {
             "type": "java",
-            "name": "Launch Calculator",
+            "name": "Launch ScienceCalculator",
             "request": "launch",
-            "mainClass": "Calculation.Calculator",
-            "projectName": "ProjectCalculator2"
-        },
-        {
-            "type": "java",
-            "name": "Launch StandardCalculator",
-            "request": "launch",
-            "mainClass": "Calculation.StandardCalculator",
-            "projectName": "ProjectCalculator2"
-        },
-        {
-            "type": "java",
-            "name": "Launch Converter",
-            "request": "launch",
-            "mainClass": "Programmer.Converter",
-            "projectName": "ProjectCalculator2"
-        },
-        {
-            "type": "java",
-            "name": "Launch Weight",
-            "request": "launch",
-            "mainClass": "Programmer.Weight",
-            "projectName": "ProjectCalculator2"
+            "mainClass": "Calculation.ScienceCalculator"
         }
     ]
 }

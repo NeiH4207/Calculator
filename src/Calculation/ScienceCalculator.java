@@ -9,8 +9,8 @@ import java.awt.event.*;
 public class ScienceCalculator extends Calculator implements ActionListener{
 
 	public ScienceCalculator() {
-		CalculatingPanel ResultArea = getCalculatingPanel();
-		ShowResultField CalPanel = getShowResultField();
+		CalculatingPanel CalPanel = getCalculatingPanel();
+		ShowResultField ResultArea = getShowResultField();
 		HistoryField HistoryArea = getHistoryField();
 		SymbolTable SymTable = getSymbolTable();
 		Processor Processor = getProcessor();
@@ -24,8 +24,8 @@ public class ScienceCalculator extends Calculator implements ActionListener{
 		ResultArea.Panel.setFont(new Font("NewellsHand", Font.PLAIN, 30));
 		frame.add(ResultArea.Panel);
 
-		CalPanel.Panel.setBounds(10,170,700,200);
-		CalPanel.Panel.setFont(new Font("NewellsHand", Font.PLAIN, 50));
+		CalPanel.setBound(10,170,700,200);
+		CalPanel.setFont(new Font("NewellsHand", Font.PLAIN, 30));
 		frame.add(CalPanel.Panel);
 		
 		HistoryArea.Panel.setBounds(720,10, 350, 750);
@@ -53,174 +53,157 @@ public class ScienceCalculator extends Calculator implements ActionListener{
         // // String s = e.getActionCommand();
 		// System.out.println(SymTable.operButton.e);
 		// System.out.println(e.getActionCommand());
+		if (CalPanel.EndExpression == true){
+			CalPanel.EndExpression = false;
+			CalPanel.setText("");
+		}
 
 		for(int i = 0; i < 10; i++) {
 			if(e.getSource() == SymTable.numButton.Buttons[i]) {
-				CalPanel.Panel.setText(CalPanel.Panel.getText().concat(Integer.toString(i)));
+				CalPanel.setText(CalPanel.getText().concat(Integer.toString(i)));
+				CalPanel.setValue(CalPanel.getValue() * 10 + i);
 			}
 		}
 
 		if(e.getSource() == SymTable.operButton.e) {
-			CalPanel.Panel.setText(CalPanel.Panel.getText().concat("e"));
-			ResultArea.Panel.setText(ResultArea.Panel.getText().concat(String.valueOf(Math.E).substring(0,15)));
+			CalPanel.setText(CalPanel.getText().concat("e"));
+			CalPanel.setValue(Double.parseDouble(String.valueOf(Math.E)));
 		}
 		//concat nối thêm chuỗi cố định vào cuối chuỗi đã cho
 		if(e.getSource() == SymTable.operButton.pi) {
-			CalPanel.Panel.setText(CalPanel.Panel.getText().concat(e.getActionCommand()));
-			ResultArea.Panel.setText(ResultArea.Panel.getText().concat((String.valueOf(Math.PI).substring(0, 15))));
+			CalPanel.setText(CalPanel.getText().concat(e.getActionCommand()));
+			CalPanel.setValue(Double.parseDouble(String.valueOf(Math.PI)));
 		}
 		
 		if(e.getSource() == SymTable.operButton.dot) {
-			CalPanel.Panel.setText(CalPanel.Panel.getText().concat("."));
-			ResultArea.Panel.setText(ResultArea.Panel.getText().concat("."));
+			CalPanel.setText(CalPanel.getText().concat("."));
+			CalPanel.sign[CalPanel.nValues] = '.';
+			CalPanel.nValues += 1;
 		}
+		
 		if(e.getSource() == SymTable.operButton.abs) {
-			double num = Double.parseDouble(CalPanel.Panel.getText());
-			if(num < 0) {
-				result = (-1) * num;
-			}else {
-				result = num;
-			}
-			CalPanel.Panel.setText(String.valueOf(result));
-			ResultArea.Panel.setText("abs(" + String.valueOf(result) + ")");
+			CalPanel.setText("|" + CalPanel.getText() + "|");
+			CalPanel.setValue(Math.abs(CalPanel.getValue()));
+			// CalPanel.setText(String.valueOf(result));
 		}
 		if(e.getSource() == SymTable.operButton.sqrt) {
-			num1 = Double.parseDouble(CalPanel.Panel.getText());
-			result = Math.sqrt(num1);
-			CalPanel.Panel.setText(String.valueOf(result));
-			ResultArea.Panel.setText(String.valueOf(result));
+			CalPanel.setValue(Math.sqrt(CalPanel.getValue()));
+			CalPanel.setText("sqrt(" + CalPanel.getText() + ")");
 		}
 		if(e.getSource() == SymTable.operButton.sqr) {
-			num1 = Double.parseDouble(CalPanel.Panel.getText());
-			result = num1 * num1;
-			CalPanel.Panel.setText(String.valueOf(result));
-			ResultArea.Panel.setText(String.valueOf(result));
+			double num = Double.parseDouble(CalPanel.getText());
+			result = num * num;
+			CalPanel.setText("sqr(" + CalPanel.getText() + ")");
+			CalPanel.setValue(result);
+			// ResultArea.Panel.setText(String.valueOf(result));
 		}
 		
 		if(e.getSource() == SymTable.operButton.sin) {
-			double num = Double.parseDouble(CalPanel.Panel.getText());
-			result = Math.sin(num);
-			CalPanel.Panel.setText(String.valueOf(result));
-			ResultArea.Panel.setText("sin("+ String.valueOf(num) + ") "+ "=");
+			result = Math.sin(CalPanel.getValue());
+			CalPanel.setText("sin(" + CalPanel.getText() + ")");
+			CalPanel.setValue(result);
+			// ResultArea.Panel.setText("sin("+ String.valueOf(num) + ") " + "=");
 		}
+
 		if(e.getSource() == SymTable.operButton.cos) {
-			double num = Double.parseDouble(CalPanel.Panel.getText());
-			result = Math.cos(num);
-			CalPanel.Panel.setText(String.valueOf(result));
-			ResultArea.Panel.setText("cos("+ String.valueOf(num) + ") " + "=");
+			result = Math.cos(CalPanel.getValue());
+			CalPanel.setText("cos(" + CalPanel.getText() + ")");
+			CalPanel.setValue(result);
 		}
 		if(e.getSource() == SymTable.operButton.tan) {
-			double num = Double.parseDouble(CalPanel.Panel.getText());
-			result = Math.tan(num);
-			CalPanel.Panel.setText(String.valueOf(result));
-			ResultArea.Panel.setText("tan("+ String.valueOf(num) + ") " + "=");
+			result = Math.tan(CalPanel.getValue());
+			CalPanel.setText("tan(" + CalPanel.getText() + ")");
+			CalPanel.setValue(result);
 		}
 		if(e.getSource() == SymTable.operButton.cot) {
-			double num = Double.parseDouble(CalPanel.Panel.getText());
-			result = 1 / (Math.tan(num));
-			CalPanel.Panel.setText("cot(String.valueOf(result)");
-			ResultArea.Panel.setText("cot("+ String.valueOf(num) + ") " + "=");
+			result = 1.0 / Math.tan(CalPanel.getValue());
+			CalPanel.setText("cot(" + CalPanel.getText() + ")");
+			CalPanel.setValue(result);
 		}
-		
 		
 		if(e.getSource() == SymTable.operButton.fac) {
-			int num = Integer.parseInt(CalPanel.Panel.getText());
-			result = factorial(num);
-			CalPanel.Panel.setText(String.valueOf(result));
-			ResultArea.Panel.setText(String.valueOf(num) + "! " + "=");
+			if ((int) CalPanel.getValue() == (int) CalPanel.getValue()){
+				CalPanel.EndExpression = true;
+				CalPanel.setText("Error Double Value Factorial!");
+			} else{
+				result = factorial((int) CalPanel.getValue());
+				CalPanel.setText("(" + CalPanel.getText() + ")!");
+				CalPanel.setValue(result);
+			}
 		}
+
 		if(e.getSource() == SymTable.operButton.pow10) {
-			int num = Integer.parseInt(CalPanel.Panel.getText());
-			result = Math.pow(10, num);
-			CalPanel.Panel.setText(String.valueOf(result));
-			ResultArea.Panel.setText("10^" + String.valueOf(num));
+			CalPanel.setValue(Math.pow(10, CalPanel.getValue()));
+			CalPanel.setText("10^(" + CalPanel.getText() + ")");
 		}
+
+		if(e.getSource() == SymTable.operButton.pow) {
+			CalPanel.sign[CalPanel.nValues] = '^';
+			CalPanel.nValues += 1;
+			CalPanel.setText("(" + CalPanel.getText() + ")^");
+		}
+
 		if(e.getSource() == SymTable.operButton.round) {
-			double num = Double.parseDouble(CalPanel.Panel.getText());
-			result = Math.ceil(num);
-			CalPanel.Panel.setText(String.valueOf(result));
-			ResultArea.Panel.setText("celi(" + String.valueOf(num) + ") " + "=");
+			result = Math.round(CalPanel.getValue());
+			CalPanel.setValue(result);
+			CalPanel.setText("round(" + CalPanel.getText() + ") " + "=");
 		}
-		
 		
 		if(e.getSource() == SymTable.operButton.add) {
-			num1 = Double.parseDouble(CalPanel.Panel.getText());
-			sign = "+";
-			CalPanel.Panel.setText(e.getActionCommand() + "+");
-			//ResultArea.Panel.setText(String.valueOf(num1));
+			CalPanel.sign[CalPanel.nValues] = '+';
+			CalPanel.nValues += 1;
+			CalPanel.setText(CalPanel.getText() + " + ");
 		}
+
 		if(e.getSource() == SymTable.operButton.sub) {
-			num1 = Double.parseDouble(e.getActionCommand());
-			sign = "-";
-			CalPanel.Panel.setText("");
+			CalPanel.sign[CalPanel.nValues] = '-';
+			CalPanel.nValues += 1;
+			CalPanel.setText(CalPanel.getText() + " - ");
 			//ResultArea.Panel.setText(String.valueOf(num1));
 		}
 		if(e.getSource() == SymTable.operButton.mul) {
-			num1 = Double.parseDouble(CalPanel.Panel.getText());
-			sign = "*";
-			CalPanel.Panel.setText("");
+			CalPanel.sign[CalPanel.nValues] = '*';
+			CalPanel.nValues += 1;
+			CalPanel.setText(CalPanel.getText() + " * ");
 			//ResultArea.Panel.setText(String.valueOf(num1));
 		}
 
 		if(e.getSource() == SymTable.operButton.div) {
-			num1 = Double.parseDouble(CalPanel.Panel.getText());
-			sign ="/";
-			CalPanel.Panel.setText("");
+			CalPanel.sign[CalPanel.nValues] = '/';
+			CalPanel.nValues += 1;
+			CalPanel.setText(CalPanel.getText() + " / ");
 			//ResultArea.Panel.setText(String.valueOf(num1));
 		}
 		if(e.getSource() == SymTable.operButton.pow) {
-			num1 = Double.parseDouble(CalPanel.Panel.getText());
+			num1 = Double.parseDouble(CalPanel.getText());
 			sign = "pow";
-			CalPanel.Panel.setText("");
+			CalPanel.setText("");
 			//ResultArea.Panel.setText(String.valueOf(num1));
 		}
 		if(e.getSource() == SymTable.operButton.equ) {
-			num2 = Double.parseDouble(CalPanel.Panel.getText());
-			HistoryArea.add(CalPanel.Panel.getText());
-			HistoryArea.show();
-			ResultArea.Panel.setText(String.valueOf(num2));
-			switch(sign) {
-				case "+":
-					result = num1 + num2;
-					break;
-				
-				case "-":
-					result = num1 - num2;
-					break;
-				case "*":
-					result = num1 * num2;
-					break;
-				case "/":
-					result = num1 / num2;
-					break;
-				case "pow":
-					result = Math.pow(num1, num2);
-			}
 			
-			ResultArea.Panel.setText(String.valueOf(num1)+ " " + sign + " " + String.valueOf(num2) + " =");
-			CalPanel.Panel.setText(String.valueOf(result));
-			num1 = result;
-			
+			ResultArea.Panel.setText(String.valueOf(CalPanel.getGolbalValue()));
+			CalPanel.setText(CalPanel.getText() + " =");
+			CalPanel.resetValue();
+			CalPanel.EndExpression = true;
 		}
 		if(e.getSource() == SymTable.operButton.clr) {
-			CalPanel.Panel.setText("");
-			
+			CalPanel.setText("");
+			CalPanel.resetValue();
+			ResultArea.Panel.setText("");
 		}
-		if(e.getSource() == SymTable.operButton.del) {
-			String result = CalPanel.Panel.getText();
-			CalPanel.Panel.setText("");
-			for(int i = 0; i < result.length() - 1; i++) {
-				CalPanel.Panel.setText(CalPanel.Panel.getText()+ result.charAt(i));
-				
-				
-			}
-			
-		}
-		if(e.getSource() == SymTable.operButton.neg) {
-			double temp = Double.parseDouble(CalPanel.Panel.getText());
-			temp *=-1;
-			CalPanel.Panel.setText(String.valueOf(temp));
-		}
+
+		// if(e.getSource() == SymTable.operButton.del) {
+		// 	String s = CalPanel.getText();
+		// 	CalPanel.setText(s.substring(0, s.length() - 1));
+		// 	CalPanel.setText(s);
+		// }
+		
+		// if(e.getSource() == SymTable.operButton.neg) {
+		// 	double temp = Double.parseDouble(CalPanel.getText());
+		// 	temp *=-1;
+		// 	CalPanel.setText(String.valueOf(temp));
+		// }
 	
 	}
 	
