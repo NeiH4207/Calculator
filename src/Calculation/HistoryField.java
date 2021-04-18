@@ -11,6 +11,21 @@ public class HistoryField {
 	public JTextArea Panel = new JTextArea();
 	private List<String> list = new ArrayList<String>();  
 
+	public JTextArea getPanel() {
+		return Panel;
+	}
+
+	public void setPanel(JTextArea panel) {
+		Panel = panel;
+	}
+
+	public List<String> getList() {
+		return list;
+	}
+
+	public void setList(List<String> list) {
+		this.list = list;
+	}
 	
 	HistoryField (){
 		Panel.setBounds(1460,10,450,980);
