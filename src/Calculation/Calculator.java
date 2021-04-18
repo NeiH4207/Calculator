@@ -1,7 +1,5 @@
 package Calculation;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 	
 public class Calculator{
 	
@@ -10,18 +8,9 @@ public class Calculator{
 	ShowResultField ResultArea = new ShowResultField();
 	HistoryField HistoryArea = new HistoryField();
 	SymbolTable SymTable = new SymbolTable();
-	Processor Processor = new Processor();
-	
-	double num1 = 0,num2= 0, result = 0;
-	String sign;
+	Processor Processor = new Processor(CalPanel, SymTable, ResultArea, HistoryArea);
 
-	double CurrentNumber = 0;
-
-	double Value[] = {0, 0};
-	
-	public Calculator() {
-		
-	}
+	public Calculator() {}
 	
 	public CalculatingPanel getCalculatingPanel() {
         return CalPanel;
@@ -39,11 +28,9 @@ public class Calculator{
         return Processor;
     }
 	
- 
 	public JFrame getFrame() {
 		return frame;
 	}
-
 
 	public void setFrame(JFrame frame) {
 		this.frame = frame;

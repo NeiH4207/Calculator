@@ -1,81 +1,167 @@
 package Calculation;
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
-public class Processor extends SymbolTable {
+public class Processor{
+
+	CalculatingPanel CalPanel;
+	ShowResultField ResultArea;
+	HistoryField HistoryArea;
+	SymbolTable SymTable;
+
+	Processor(CalculatingPanel _CalPanel, SymbolTable _SymTable,
+			  ShowResultField _ResultArea, HistoryField _HisArea){
+		this.CalPanel = _CalPanel;
+		this.SymTable = _SymTable;
+		this.ResultArea = _ResultArea;
+		this.HistoryArea = _HisArea;
+	}
+
   	public enum Standard {
 		add, sub, mul, div, sqrt, neg 
 	}
+
 	public enum Science {
 		sin, cos, tan, cot, abs, fac, sqr, ln, log, pow, pow10, round, mod, e, pi
 	}
-	double num1, num2 , result;
-	public Standard Operator = Standard.add;
-	public Science  newOperator = Science.sin;
+	
+	
 
-	public void Implement(ActionEvent event){
-	}
+	public void Implement(ActionEvent e){
+		if (CalPanel.EndExpression == true){
+			CalPanel.EndExpression = false;
+			CalPanel.setText("");
+		}
 
+		for(int i = 0; i < 10; i++) {
+			if(e.getSource() == SymTable.numButton.Buttons[i]) {
+				CalPanel.setText(CalPanel.getText().concat(Integer.toString(i)));
+				CalPanel.setValue(CalPanel.getValue() * 10 + i);
+			}
+		}
 
-	public double calcStandard() {
-		if(Operator == Standard.add) {
-			result = num1 + num2;
+		if(e.getSource() == SymTable.operButton.e) {
+			CalPanel.setText(CalPanel.getText().concat("e"));
+			CalPanel.setValue(Double.parseDouble(String.valueOf(Math.E)));
 		}
-		if(Operator == Standard.sub) {
-			result = num1 - num2;
+		//concat nối thêm chuỗi cố định vào cuối chuỗi đã cho
+		if(e.getSource() == SymTable.operButton.pi) {
+			CalPanel.setText(CalPanel.getText().concat(e.getActionCommand()));
+			CalPanel.setValue(Double.parseDouble(String.valueOf(Math.PI)));
 		}
-		if(Operator == Standard.mul) {
-			result = num1 * num2;
-		}
-		if(Operator == Standard.div) {
-			result =  num1 / num2;
-		}
-		return result;
 		
+		if(e.getSource() == SymTable.operButton.dot) {
+			CalPanel.setText(CalPanel.getText().concat("."));
+			CalPanel.sign[CalPanel.nValues] = '.';
+			CalPanel.nValues += 1;
+		}
+		
+		if(e.getSource() == SymTable.operButton.abs) {
+			CalPanel.setText("|" + CalPanel.getText() + "|");
+			CalPanel.setValue(Math.abs(CalPanel.getValue()));
+			// CalPanel.setText(String.valueOf(result));
+		}
+		if(e.getSource() == SymTable.operButton.sqrt) {
+			CalPanel.setValue(Math.sqrt(CalPanel.getValue()));
+			CalPanel.setText("sqrt(" + CalPanel.getText() + ")");
+		}
+		if(e.getSource() == SymTable.operButton.sqr) {
+			double num = Double.parseDouble(CalPanel.getText());
+			double result = num * num;
+			CalPanel.setText("sqr(" + CalPanel.getText() + ")");
+			CalPanel.setValue(result);
+			// ResultArea.Panel.setText(String.valueOf(result));
+		}
+		
+		if(e.getSource() == SymTable.operButton.sin) {
+			double result = Math.sin(CalPanel.getValue());
+			CalPanel.setText("sin(" + CalPanel.getText() + ")");
+			CalPanel.setValue(result);
+			// ResultArea.Panel.setText("sin("+ String.valueOf(num) + ") " + "=");
+		}
+
+		if(e.getSource() == SymTable.operButton.cos) {
+			double result = Math.cos(CalPanel.getValue());
+			CalPanel.setText("cos(" + CalPanel.getText() + ")");
+			CalPanel.setValue(result);
+		}
+		if(e.getSource() == SymTable.operButton.tan) {
+			double result = Math.tan(CalPanel.getValue());
+			CalPanel.setText("tan(" + CalPanel.getText() + ")");
+			CalPanel.setValue(result);
+		}
+		if(e.getSource() == SymTable.operButton.cot) {
+			double result = 1.0 / Math.tan(CalPanel.getValue());
+			CalPanel.setText("cot(" + CalPanel.getText() + ")");
+			CalPanel.setValue(result);
+		}
+		
+		if(e.getSource() == SymTable.operButton.fac) {
+			if ((int) CalPanel.getValue() == (int) CalPanel.getValue()){
+				CalPanel.EndExpression = true;
+				CalPanel.setText("Error Double Value Factorial!");
+			} else{
+				double result = factorial((int) CalPanel.getValue());
+				CalPanel.setText("(" + CalPanel.getText() + ")!");
+				CalPanel.setValue(result);
+			}
+		}
+
+		if(e.getSource() == SymTable.operButton.pow10) {
+			CalPanel.setValue(Math.pow(10, CalPanel.getValue()));
+			CalPanel.setText("10^(" + CalPanel.getText() + ")");
+		}
+
+		if(e.getSource() == SymTable.operButton.pow) {
+			CalPanel.sign[CalPanel.nValues] = '^';
+			CalPanel.nValues += 1;
+			CalPanel.setText("(" + CalPanel.getText() + ")^");
+		}
+
+		if(e.getSource() == SymTable.operButton.round) {
+			double result = Math.round(CalPanel.getValue());
+			CalPanel.setValue(result);
+			CalPanel.setText("round(" + CalPanel.getText() + ") " + "=");
+		}
+		
+		if(e.getSource() == SymTable.operButton.add) {
+			CalPanel.sign[CalPanel.nValues] = '+';
+			CalPanel.nValues += 1;
+			CalPanel.setText(CalPanel.getText() + " + ");
+		}
+
+		if(e.getSource() == SymTable.operButton.sub) {
+			CalPanel.sign[CalPanel.nValues] = '-';
+			CalPanel.nValues += 1;
+			CalPanel.setText(CalPanel.getText() + " - ");
+		}
+		if(e.getSource() == SymTable.operButton.mul) {
+			CalPanel.sign[CalPanel.nValues] = '*';
+			CalPanel.nValues += 1;
+			CalPanel.setText(CalPanel.getText() + " * ");
+		}
+
+		if(e.getSource() == SymTable.operButton.div) {
+			CalPanel.sign[CalPanel.nValues] = '/';
+			CalPanel.nValues += 1;
+			CalPanel.setText(CalPanel.getText() + " / ");
+		}
+
+		if(e.getSource() == SymTable.operButton.equ) {
+			
+			ResultArea.Panel.setText(String.valueOf(CalPanel.getGolbalValue()));
+			CalPanel.setText(CalPanel.getText() + " =");
+			CalPanel.resetValue();
+			CalPanel.EndExpression = true;
+		}
+		if(e.getSource() == SymTable.operButton.clr) {
+			CalPanel.setText("");
+			CalPanel.resetValue();
+			ResultArea.Panel.setText("");
+		}
 	}
-	public double calcScience() {
-		if(newOperator == Science.e) {
-			result = Math.E;
-		}
-		if(newOperator == Science.pi) {
-			result = Math.PI;
-		}
-		if(newOperator == Science.sin) {
-			result = Math.sin(num1);
-		}
-		if(newOperator == Science.cos) {
-			result = Math.cos(num1);
-		}
-		if(newOperator == Science.tan) {
-			result = Math.tan(num1);
-		}
-		if(newOperator == Science.cot) {
-			result = 1 / Math.tan(num1);
-		}
-		if(newOperator == Science.abs) {
-			result = Math.abs(num1);
-		}
-		if(newOperator == Science.fac) {
-			result = factorial((int) num1);
-		}
-		if(newOperator == Science.sqr) {
-			result = num1 * num1;
-		}
-		if(newOperator == Science.ln) {
-			result = Math.log(num1);
-		}
-		if(newOperator == Science.log) {
-			result = Math.log10(num1);
-		}
-		if(newOperator == Science.pow) {
-			result = Math.pow(num1, num2);
-		}
-		if(newOperator == Science.pow10) {
-			result = Math.pow(10, num1);
-		}
-		return result;
-	}
+
+ 
+
 	public double factorial(int number) {
 		double result = 1;
 		if ((number == 0) || (number ==1)) {
