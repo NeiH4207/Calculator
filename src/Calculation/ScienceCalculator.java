@@ -20,19 +20,20 @@ public class ScienceCalculator extends Calculator implements ActionListener{
 		frame.setSize(1080,760);
 		frame.setLayout(null);
 		
-		ResultArea.Panel.setBounds(10, 50, 700, 90);
-		ResultArea.Panel.setFont(new Font("NewellsHand", Font.PLAIN, 30));
-		frame.add(ResultArea.Panel);
-
-		CalPanel.setBound(10,170,700,200);
-		CalPanel.setFont(new Font("NewellsHand", Font.PLAIN, 30));
+		
+		CalPanel.Panel.setBounds(10, 50, 700, 90);
+		CalPanel.Panel.setFont(new Font("NewellsHand", Font.PLAIN, 30));
 		frame.add(CalPanel.Panel);
 		
-		HistoryArea.Panel.setBounds(720,10, 350, 750);
+		ResultArea.Panel.setBounds(10,170,700,100);
+		ResultArea.Panel.setFont(new Font("NewellsHand", Font.PLAIN, 30));
+		frame.add(ResultArea.Panel);
+		
+		HistoryArea.Panel.setBounds(720,50, 350, 650);
 		HistoryArea.Panel.setFont(new Font("NewellsHand", Font.PLAIN, 30));
 		frame.add(HistoryArea.Panel);
-
-		SymTable.Panel.setBounds(10,400,700,320);
+		
+		SymTable.Panel.setBounds(10,300,700,400);	
 		SymTable.Panel.setLayout(new GridLayout(7,5,1,1));
 
 		for (JButton button : SymTable.numButton.Buttons){
