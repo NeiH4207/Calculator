@@ -16,14 +16,6 @@ public class Processor{
 		this.HistoryArea = _HisArea;
 	}
 
-  	public enum Standard {
-		add, sub, mul, div, sqrt, neg 
-	}
-
-	public enum Science {
-		sin, cos, tan, cot, abs, fac, sqr, ln, log, pow, pow10, round, mod, e, pi
-	}
-
 	public void Implement(ActionEvent e){
 		if (CalPanel.EndExpression == true){
 			CalPanel.EndExpression = false;
