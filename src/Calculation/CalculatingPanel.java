@@ -52,7 +52,46 @@ public class CalculatingPanel {
 	}
 
 	public double getGlobalValue(){
+	
 		double result = this.Values[0];
+
+		for (int i = 0; i < nValues; i++) {
+			if (sign[i] == '.'){
+				double value = this.Values[i + 1];
+				while(value > 1){
+					value /= 10.0;
+				}
+				this.Values[i] += value;
+				for (int j = i + 1; j < this.nValues - 1; j++) {
+					this.Values[j] = this.Values[j + 1];
+					this.sign[j] = this.sign[j + 1];
+				}
+				this.nValues -= 1;
+			}
+		}
+
+		for (int i = 0; i < nValues; i++) {
+			if (sign[i] == '*'){
+				this.Values[i] *= this.Values[i + 1];
+				for (int j = i + 1; j < this.nValues - 1; j++) {
+					this.Values[j] = this.Values[j + 1];
+					this.sign[j] = this.sign[j + 1];
+				}
+				this.nValues -= 1;
+			}
+		}
+
+		for (int i = 0; i < nValues; i++) {
+			if (sign[i] == '/'){
+				this.Values[i] /= this.Values[i + 1];
+				for (int j = i + 1; j < this.nValues - 1; j++) {
+					this.Values[j] = this.Values[j + 1];
+					this.sign[j] = this.sign[j + 1];
+				}
+				this.nValues -= 1;
+			}
+		}
+		
 		for (int i = 0; i < nValues; i++){
 			if (sign[i] == '+'){
 				result += this.Values[i + 1];
