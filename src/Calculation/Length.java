@@ -4,32 +4,34 @@ import java.awt.*;
 import java.awt.event.*;
 public class Length extends Calculator implements ActionListener {
 	
-	JPanel Panel;
+	
+	JFrame frame;
+	JPanel panel;
+	JButton enterButton;
 	JTextField toText;
 	JTextField fromText;
-	
 	JLabel from, to;
 	JComboBox toBox, fromBox;
-	
-	JButton deleButton, dotButton, enterButton;
+	SymbolTable SymTable = getSymbolTable();
 	String sign;
 	double temp, result;
+	
+	
 	public Length() {
-		SymbolTable SymTable = getSymbolTable();
 		frame = new JFrame("Length");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(600, 750);
 		frame.setLayout(null);
 	
 		from = new JLabel("From");
-	    from.setBounds(20,50,75,25);
-	    from.setFont(new Font("NewellsHand",Font.PLAIN, 30));
-	    frame.add(from);
+	    	from.setBounds(20,50,75,25);
+	    	from.setFont(new Font("NewellsHand",Font.PLAIN, 30));
+	    	frame.add(from);
 	    
-	    to = new JLabel("To");
-	    to.setBounds(20,120,75,25);
-	    to.setFont(new Font("NewellsHand",Font.PLAIN, 30));
-	    frame.add(to);
+	    	to = new JLabel("To");
+	    	to.setBounds(20,120,75,25);
+	    	to.setFont(new Font("NewellsHand",Font.PLAIN, 30));
+	    	frame.add(to);
 	    
 		
 		fromText = new JTextField();
@@ -44,13 +46,18 @@ public class Length extends Calculator implements ActionListener {
 		enterButton.setBackground(Color.WHITE);
 		enterButton.addActionListener(this);
 		frame.add(enterButton);
+		
+		SymTable.operButton.del.addActionListener(this);
+		frame.add(SymTable.operButton.del);
+		SymTable.operButton.dot.addActionListener(this);
+		frame.add(SymTable.operButton.dot);
 
 		String []  item = {"Kilometres", "Centimetres", "Metres", "Inches", "Miles"};
 		fromBox = new JComboBox(item);
 		fromBox.setSelectedIndex(2);
 		fromBox.addActionListener(this);
-        fromBox.setBounds(400, 50, 150, 40);
-        frame.add(fromBox);
+        	fromBox.setBounds(400, 50, 150, 40);
+        	frame.add(fromBox);
 		
         
 		toText = new JTextField();
@@ -59,65 +66,44 @@ public class Length extends Calculator implements ActionListener {
 		frame.add(toText);
 		toBox = new JComboBox(item);
 		toBox.addActionListener(this);
-        toBox.setBounds(400, 120, 150, 40);
-        frame.add(toBox);
+        	toBox.setBounds(400, 120, 150, 40);
+        	frame.add(toBox);
 		
-        NumberButton numButton = new NumberButton();
-        
-		deleButton = new JButton("Delete");
-		deleButton.setFont(new Font("NewellsHand", Font.PLAIN, 40));
-		deleButton.addActionListener(this);
+		panel = new JPanel();
 		
-		dotButton = new JButton(".");
-		dotButton.setFont(new Font("NewellsHand", Font.PLAIN, 40));
-		dotButton.addActionListener(this);
-		
-		Panel = new JPanel();
-		Panel.setBounds(5,300,572,400);
-		Panel.setLayout(new GridLayout(4,3,1,1));
-/*
+		panel.setBounds(5,300,572,400);
+		panel.setLayout(new GridLayout(4,3,1,1));
 
+		for (int i = 0; i < 10; i++) {
+			SymTable.numButton.Buttons[i].addActionListener(this);
+			panel.add(SymTable.numButton.Buttons[i]);
+		}
 		
-		panel.add(numberButtons[7]);
-		panel.add(numberButtons[8]);
-		panel.add(numberButtons[9]);
+		panel.add(SymTable.operButton.del);
+		panel.add(SymTable.operButton.dot);
 		
-		panel.add(numberButtons[4]);
-		panel.add(numberButtons[5]);
-		panel.add(numberButtons[6]);
-		
-		panel.add(numberButtons[1]);
-		panel.add(numberButtons[2]);
-		panel.add(numberButtons[3]);
-		
-		panel.add(dotButton);
-		panel.add(numberButtons[0]);
-		panel.add(deleButton);
-		*/
-		
-		for (JButton button : numButton.Buttons){
-            Panel.add(button);
-        }
-
-
+		frame.add(panel);
 		frame.setVisible(true);
+		
 		
 	}
 	public void actionPerformed(ActionEvent e) {
 		for(int i = 0; i < 10; i++) {
 			if(e.getSource() == SymTable.numButton.Buttons[i]) {
-				CalPanel.Panel.setText(CalPanel.Panel.getText().concat(Integer.toString(i)));
+				fromText.setText(fromText.getText().concat(String.valueOf(i)));
+				temp = Double.parseDouble(fromText.getText());
 			}
 		}
-		if(e.getSource() == dotButton) {
+		if(e.getSource() == SymTable.operButton.dot) {
 			fromText.setText(fromText.getText().concat("."));
 			
 		}
-		if(e.getSource() == deleButton) {
+		if(e.getSource() == SymTable.operButton.del) {
 			String value = "";
 			toText.setText(String.valueOf(value));
 			fromText.setText(String.valueOf(value));
 		}
+	
 	
 	
 		if(e.getSource() == enterButton) {
