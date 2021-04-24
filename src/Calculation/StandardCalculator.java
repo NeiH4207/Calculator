@@ -26,16 +26,16 @@ public class StandardCalculator extends Calculator implements ActionListener {
 		SymTable2.Panel.setLayout(new GridLayout(5,4,1,1));
 		
 		for (JButton button : SymTable2.numButton.Buttons){
-            button.addActionListener(this);
-        }
+            		button.addActionListener(this);
+        	}
 		
 		for (JButton button : SymTable2.operButton.Buttons){
-            button.addActionListener(this);
-        }
+            		button.addActionListener(this);
+        	}
         
 		frame.add(SymTable2.Panel);
 		frame.setVisible(true);
-	}
+		}
 
   	public void actionPerformed(ActionEvent e) {
 		
