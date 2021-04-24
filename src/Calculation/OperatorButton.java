@@ -51,7 +51,8 @@ public class OperatorButton {
 		fac.setText("n!");
 		round.setText("x");
 		abs.setIcon(new ImageIcon(path + "/images/abs.png"));
-		clr.setText("+/_");
+		clr.setIcon(new ImageIcon(path + "/images/clear.png"));
+		neg.setText("+/_");
 		ln.setText("ln");
 		log.setText("log");
 		pow10.setText("x^10");

@@ -52,6 +52,9 @@ public class StandardCalculator extends Calculator implements ActionListener {
 		}
 		if(e.getSource() == SymTable2.operButton.dot) {
 			CalPanel.setText(CalPanel.getText().concat("."));
+			CalPanel.sign[CalPanel.nValues] = '.';
+			CalPanel.nValues += 1;
+			
 		}
 		if(e.getSource() == SymTable2.operButton.add) {
 			CalPanel.sign[CalPanel.nValues] = '+';

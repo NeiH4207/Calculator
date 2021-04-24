@@ -7,8 +7,8 @@ public class CalculatingPanel {
 
 	JTextArea Panel = new JTextArea();
 	private String Expression = "";
-	private double Values[] = {0, 0, 0, 0, 0, 0, 0};
-	char sign[] = {'+', '+', '+', '+', '+', '+'};
+	private double Values[] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+	char sign[] = {'+', '+', '+', '+', '+', '+', '+', '+'};
 	int nValues = 0;
 	boolean EndExpression = false;
 	private int WIDTH, HEIGHT;
@@ -49,12 +49,11 @@ public class CalculatingPanel {
 			this.Values[i] = 0;
 			sign[i] = '+';
 		}
+		this.nValues = 0;
 	}
 
 	public double getGlobalValue(){
-	
-		double result = this.Values[0];
-
+		
 		for (int i = 0; i < nValues; i++) {
 			if (sign[i] == '.'){
 				double value = this.Values[i + 1];
@@ -62,58 +61,54 @@ public class CalculatingPanel {
 					value /= 10.0;
 				}
 				this.Values[i] += value;
-				for (int j = i + 1; j < this.nValues - 1; j++) {
+				for (int j = i + 1; j < this.nValues; j++) {
 					this.Values[j] = this.Values[j + 1];
-					this.sign[j] = this.sign[j + 1];
+					this.sign[j - 1] = this.sign[j];
 				}
 				this.nValues -= 1;
+			}
+		}
+
+		for (int i = 0; i < nValues; i++) {
+			if (sign[i] == '^'){
+				double value = Math.pow(this.Values[i], this.Values[i + 1]);
+				this.Values[i] = value;
+				this.Values[i + 1] = 1;
+				this.sign[i] = '*';
 			}
 		}
 
 		for (int i = 0; i < nValues; i++) {
 			if (sign[i] == '*'){
 				this.Values[i] *= this.Values[i + 1];
-				for (int j = i + 1; j < this.nValues - 1; j++) {
+				for (int j = i + 1; j < this.nValues; j++) {
 					this.Values[j] = this.Values[j + 1];
-					this.sign[j] = this.sign[j + 1];
+					this.sign[j - 1] = this.sign[j];
 				}
 				this.nValues -= 1;
+				i -= 1;
+				continue;
 			}
-		}
-
-		for (int i = 0; i < nValues; i++) {
 			if (sign[i] == '/'){
 				this.Values[i] /= this.Values[i + 1];
-				for (int j = i + 1; j < this.nValues - 1; j++) {
+				for (int j = i + 1; j < this.nValues; j++) {
 					this.Values[j] = this.Values[j + 1];
-					this.sign[j] = this.sign[j + 1];
+					this.sign[j - 1] = this.sign[j];
 				}
 				this.nValues -= 1;
+				i -= 1;
+				continue;
 			}
 		}
 		
+		double result = this.Values[0];
+
 		for (int i = 0; i < nValues; i++){
 			if (sign[i] == '+'){
 				result += this.Values[i + 1];
 			}
 			if (sign[i] == '-'){
 				result -= this.Values[i + 1];
-			}
-			if (sign[i] == '*'){
-				result *= this.Values[i + 1];
-			}
-			if (sign[i] == '/'){
-				result /= this.Values[i + 1];
-			}
-			if (sign[i] == '^'){
-				result = Math.pow(result, this.Values[i + 1]);
-			}
-			if (sign[i] == '.'){
-				double value = this.Values[i + 1];
-				while(value > 1){
-					value /= 10.0;
-				}
-				result = result + value;
 			}
 		}
 		return result;
