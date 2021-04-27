@@ -6,7 +6,7 @@ import java.awt.*;
 public class StandardSymbolTable{
 	NumberButton numButton = new NumberButton();
 	OperatorButton operButton = new OperatorButton();
-	JPanel Panel = new JPanel();
+	private JPanel Panel = new JPanel();
 
 	StandardSymbolTable(){
 		Panel.setBounds(10,400,1440,600);
@@ -52,6 +52,23 @@ public class StandardSymbolTable{
 	public void setOperButton(OperatorButton operButton) {
 		this.operButton = operButton;
 	}
+	
+	public void setLayout(GridLayout GridLayout){
+		this.Panel.setLayout(GridLayout);
+	}
+
+	public void setBackgroundColor(Color c){
+		this.Panel.setBackground(c);
+	}
+
+	public void setBounds(int x, int y, int width, int height){
+		this.Panel.setBounds(x, y, width, height);
+	}
+
+	public void setFont(Font f){
+		this.Panel.setFont(f);
+	}
+
 	public JPanel getPanel() {
 		return Panel;
 	}
@@ -59,5 +76,6 @@ public class StandardSymbolTable{
 	public void setPanel(JPanel panel) {
 		Panel = panel;
 	}
+
 
 }

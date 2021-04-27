@@ -111,7 +111,8 @@ public class Processor{
 		
 
 		if(e.getSource() == SymTable.operButton.pow10) {
-			CalPanel.setValue(Math.pow(10, CalPanel.getValue()));
+			CalPanel.setValue(Math.pow(10, CalPanel.getGlobalValue()));
+			CalPanel.resetValue();
 			CalPanel.setText("10^(" + CalPanel.getText() + ")");
 		}
 
@@ -123,6 +124,7 @@ public class Processor{
 
 		if(e.getSource() == SymTable.operButton.round) {
 			double result = Math.round(CalPanel.getGlobalValue());
+			CalPanel.resetValue();
 			CalPanel.resetValue();
 			CalPanel.setValue(result);
 			CalPanel.setText("round(" + CalPanel.getText() + ") " + "=");
@@ -152,20 +154,22 @@ public class Processor{
 		}
 
 		if(e.getSource() == SymTable.operButton.equ) {
-			
-			ResultArea.Panel.setText(String.valueOf(CalPanel.getGlobalValue()));
+			double result = CalPanel.getGlobalValue();
+			ResultArea.Panel.setText(String.valueOf(result));
+			HistoryArea.add("= " + String.valueOf(result));
+			HistoryArea.add( CalPanel.getText());
 			CalPanel.setText(CalPanel.getText() + " =");
 			CalPanel.resetValue();
 			CalPanel.EndExpression = true;
+			HistoryArea.show();
 		}
 		if(e.getSource() == SymTable.operButton.clr) {
 			CalPanel.setText("");
 			CalPanel.resetValue();
 			ResultArea.Panel.setText("");
+			HistoryArea.clear();
 		}
 	}
-
- 
 
 	public double factorial(int number) {
 		double result = 1;

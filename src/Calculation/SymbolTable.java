@@ -1,7 +1,6 @@
 package Calculation;
 
 import javax.swing.JPanel;
-import javax.swing.*;
 import java.awt.*;
 
 public class SymbolTable{
@@ -21,6 +20,19 @@ public class SymbolTable{
 	public void setOperButton(OperatorButton operButton) {
 		this.operButton = operButton;
 	}
+
+	public void setBackgroundColor(Color c){
+		this.Panel.setBackground(c);
+	}
+
+	public void setBounds(int x, int y, int width, int height){
+		this.Panel.setBounds(x, y, width, height);
+	}
+
+	public void setFont(Font f){
+		this.Panel.setFont(f);
+	}
+
 	public JPanel getPanel() {
 		return Panel;
 	}

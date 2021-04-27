@@ -1,18 +1,16 @@
 package Calculation;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.text.DecimalFormat;
 
 public class CalculatingPanel {
 
-	JTextArea Panel = new JTextArea();
-	private String Expression = "";
+	private JTextArea Panel = new JTextArea();
+	private Color BG_COLOR = Color.WHITE;
 	private double Values[] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 	char sign[] = {'+', '+', '+', '+', '+', '+', '+', '+'};
 	int nValues = 0;
 	boolean EndExpression = false;
-	private int WIDTH, HEIGHT;
-	Color BG_COLOR = Color.WHITE;
 
 	CalculatingPanel(){
 		this.Panel.setBackground(BG_COLOR);
@@ -20,11 +18,15 @@ public class CalculatingPanel {
 		this.Panel.setFont(new Font("NewellsHand", Font.PLAIN, 10));
 	}
 
+	public JTextArea getPanel(){
+		return this.Panel;
+	}
+
 	public void setBackgroundColor(Color c){
 		this.Panel.setBackground(c);
 	}
 
-	public void setBound(int x, int y, int width, int height){
+	public void setBounds(int x, int y, int width, int height){
 		this.Panel.setBounds(x, y, width, height);
 	}
 
@@ -111,6 +113,9 @@ public class CalculatingPanel {
 				result -= this.Values[i + 1];
 			}
 		}
+
+		DecimalFormat df = new DecimalFormat("#.##");      
+		result = Double.valueOf(df.format(result));
 		return result;
 	}
 

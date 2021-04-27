@@ -65,7 +65,7 @@ public class OperatorButton {
 		}
 	}
 
-	public void setNumberButton() {
+	public void setOperatorButton() {
 		for(int i = 0; i < Buttons.length; i++) {
 			Buttons[i].setBackground(BG_COLOR);
 			Buttons[i].setFont(operFont);

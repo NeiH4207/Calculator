@@ -4,15 +4,30 @@ import java.util.List;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class HistoryField {
 
-	public JTextArea Panel = new JTextArea();
+	private JTextArea Panel = new JTextArea();
 	private List<String> list = new ArrayList<String>();  
 
 	public JTextArea getPanel() {
 		return Panel;
+	}
+
+	public void setBounds(int x, int y, int width, int height){
+		this.Panel.setBounds(x, y, width, height);
+	}
+
+	public void setFont(Font f){
+		this.Panel.setFont(f);
+	}
+
+	public void setText(String text){
+		this.Panel.setText(text);
+	}
+
+	public String getText(){
+		return this.Panel.getText();
 	}
 
 	public void setPanel(JTextArea panel) {
@@ -30,6 +45,10 @@ public class HistoryField {
 	HistoryField (){
 		Panel.setBounds(1460,10,450,980);
 	};
+
+	public void clear(){
+		this.list = new ArrayList<String>();  
+	}
 
 	public void add(String his){
 		this.list.add(his);
