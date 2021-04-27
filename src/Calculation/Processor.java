@@ -156,8 +156,7 @@ public class Processor{
 		if(e.getSource() == SymTable.operButton.equ) {
 			double result = CalPanel.getGlobalValue();
 			ResultArea.Panel.setText(String.valueOf(result));
-			HistoryArea.add("= " + String.valueOf(result));
-			HistoryArea.add( CalPanel.getText());
+			HistoryArea.add(CalPanel.getText() + " = " + String.valueOf(result));
 			CalPanel.setText(CalPanel.getText() + " =");
 			CalPanel.resetValue();
 			CalPanel.EndExpression = true;
