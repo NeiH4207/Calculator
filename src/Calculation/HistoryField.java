@@ -60,6 +60,7 @@ public class HistoryField {
 		for(String item:list)  {
 			s = item + "\n" + s;
 		}
+		
 		Panel.setText(s);
 	}
 }

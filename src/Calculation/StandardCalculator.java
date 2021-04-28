@@ -103,7 +103,6 @@ public class StandardCalculator extends Calculator implements ActionListener {
 			CalPanel.resetValue();
 			ResultArea.Panel.setText("");
 		}
-		
 	}
 	public static void main (String [] args) {
 		new StandardCalculator ();

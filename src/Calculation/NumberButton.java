@@ -12,7 +12,6 @@ public class NumberButton {
 	JButton Buttons[] = {Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine};
 
 	NumberButton(){
-		super();
 		creatNumberButton();
 	}
 	

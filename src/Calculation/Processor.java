@@ -44,7 +44,7 @@ public class Processor{
 			CalPanel.sign[CalPanel.nValues] = '.';
 			CalPanel.nValues += 1;
 		}
-		
+
 		if(e.getSource() == SymTable.operButton.abs) {
 			double result = Math.abs(CalPanel.getGlobalValue());
 			CalPanel.setText("|" + CalPanel.getText() + "|");
@@ -52,13 +52,15 @@ public class Processor{
 			CalPanel.setValue(result);
 			// CalPanel.setText(String.valueOf(result));
 		}
+
 		if(e.getSource() == SymTable.operButton.sqrt) {
 			double result = Math.sqrt(CalPanel.getGlobalValue());
-			CalPanel.setValue(Math.sqrt(CalPanel.getGlobalValue()));
+			CalPanel.setValue(result);
 			CalPanel.resetValue();
 			CalPanel.setText("sqrt(" + CalPanel.getText() + ")");
 			CalPanel.setValue(result);
 		}
+		
 		if(e.getSource() == SymTable.operButton.sqr) {
 			double num = CalPanel.getGlobalValue();
 			CalPanel.resetValue();
@@ -110,6 +112,7 @@ public class Processor{
 			if ((int) CalPanel.getValue() != (int) CalPanel.getGlobalValue()){
 				CalPanel.EndExpression = true;
 				CalPanel.setText("Error Double Value Factorial!");
+				CalPanel.resetValue();
 			} else{
 				double result = factorial((int) CalPanel.getGlobalValue());
 				CalPanel.resetValue();

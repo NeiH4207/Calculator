@@ -7,8 +7,8 @@ public class CalculatingPanel {
 
 	private JTextArea Panel = new JTextArea();
 	private Color BG_COLOR = Color.WHITE;
-	private double Values[] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
-	char sign[] = {'+', '+', '+', '+', '+', '+', '+', '+'};
+	private double Values[] = new double[100];
+	char sign[] = new char[100];
 	int nValues = 0;
 	boolean EndExpression = false;
 
