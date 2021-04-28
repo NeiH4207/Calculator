@@ -10,7 +10,7 @@ public class StandardSymbolTable{
 
 	StandardSymbolTable(){
 		Panel.setBounds(10,400,1440,600);
-		Panel.setLayout(new GridLayout(7,5,1,1));
+		Panel.setLayout(new GridLayout(5,5,1,1));
 		
 		Panel.add(operButton.sqrt);
 		Panel.add(operButton.del);
