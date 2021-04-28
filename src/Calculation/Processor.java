@@ -53,9 +53,11 @@ public class Processor{
 			// CalPanel.setText(String.valueOf(result));
 		}
 		if(e.getSource() == SymTable.operButton.sqrt) {
+			double result = Math.sqrt(CalPanel.getGlobalValue());
 			CalPanel.setValue(Math.sqrt(CalPanel.getGlobalValue()));
 			CalPanel.resetValue();
 			CalPanel.setText("sqrt(" + CalPanel.getText() + ")");
+			CalPanel.setValue(result);
 		}
 		if(e.getSource() == SymTable.operButton.sqr) {
 			double num = CalPanel.getGlobalValue();
@@ -64,6 +66,18 @@ public class Processor{
 			CalPanel.setText("sqr(" + CalPanel.getText() + ")");
 			CalPanel.setValue(result);
 			// ResultArea.Panel.setText(String.valueOf(result));
+		}
+		if(e.getSource() == SymTable.operButton.ln) {
+			double result = Math.log(CalPanel.getGlobalValue());
+			CalPanel.setText("ln(" + CalPanel.getText() + ")");
+			CalPanel.resetValue();
+			CalPanel.setValue(result);	
+		}
+		if(e.getSource() == SymTable.operButton.log) {
+			double result = Math.log10(CalPanel.getGlobalValue());
+			CalPanel.setText("log(" + CalPanel.getText() + ")");
+			CalPanel.resetValue();
+			CalPanel.setValue(result);	
 		}
 		
 		if(e.getSource() == SymTable.operButton.sin) {
@@ -92,18 +106,18 @@ public class Processor{
 			CalPanel.setText("cot(" + CalPanel.getText() + ")");
 			CalPanel.setValue(result);
 		}
-		
 		if(e.getSource() == SymTable.operButton.fac) {
-			if ((int) CalPanel.getValue() == (int) CalPanel.getGlobalValue()){
+			if ((int) CalPanel.getValue() != (int) CalPanel.getGlobalValue()){
 				CalPanel.EndExpression = true;
 				CalPanel.setText("Error Double Value Factorial!");
 			} else{
 				double result = factorial((int) CalPanel.getGlobalValue());
 				CalPanel.resetValue();
-				CalPanel.setText("(" + CalPanel.getText() + ")!");
+				CalPanel.setText(CalPanel.getText() + "!");
 				CalPanel.setValue(result);
 			}
 		}
+		
 		if(e.getSource() == SymTable.operButton.del) {
 			CalPanel.setText(CalPanel.getText().substring(0, CalPanel.getText().length() - 1));
 			CalPanel.setValue((int) CalPanel.getValue() / 10);
