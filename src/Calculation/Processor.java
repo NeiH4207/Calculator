@@ -31,12 +31,12 @@ public class Processor{
 
 		if(e.getSource() == SymTable.operButton.e) {
 			CalPanel.setText(CalPanel.getText().concat("e"));
-			CalPanel.setValue(Double.parseDouble(String.valueOf(Math.E)));
+			CalPanel.setValue(Math.E);
 		}
 		//concat nối thêm chuỗi cố định vào cuối chuỗi đã cho
 		if(e.getSource() == SymTable.operButton.pi) {
 			CalPanel.setText(CalPanel.getText().concat(e.getActionCommand()));
-			CalPanel.setValue(Double.parseDouble(String.valueOf(Math.PI)));
+			CalPanel.setValue(Math.PI);
 		}
 		
 		if(e.getSource() == SymTable.operButton.dot) {
@@ -139,9 +139,8 @@ public class Processor{
 		if(e.getSource() == SymTable.operButton.round) {
 			double result = Math.round(CalPanel.getGlobalValue());
 			CalPanel.resetValue();
-			CalPanel.resetValue();
 			CalPanel.setValue(result);
-			CalPanel.setText("round(" + CalPanel.getText() + ") " + "=");
+			CalPanel.setText("round(" + CalPanel.getText() + ") ");
 		}
 		
 		if(e.getSource() == SymTable.operButton.add) {
